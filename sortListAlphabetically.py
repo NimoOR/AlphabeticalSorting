@@ -1,10 +1,11 @@
 import sys
 
-wordList = []
-'''
-for line in sys.stdin:
+words = open test.txt, a+r
+wordList.write(words.read())
+
+for line in wordList:
     wordList.append(line.replace("\n", "").lower())
-'''
+    
 def partition(low, high, arr):
     pivot, part = ord(arr[high[0]]), low
     for j in range(low, high):
