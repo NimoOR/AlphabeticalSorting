@@ -3,27 +3,24 @@
 import sys
 
 words = sys.stdin.read()
-
-wordsList = []
-
-wordsList = words.split("\n")
-
+wordsList = ["drew", "Raffi", "nick's", "Qasem", "Avi's", "avis", "qasem", "raffi"]
+#wordsList = words.split("\n")
+for i in range(len(wordsList)):
+    wordsList[i] = wordsList[i].lower()
 print(wordsList)
+#print(wordsList)
 
 def partition(low, high, arr):
-    pivot, part = ord(arr[high][0].lower()), low
+    pivot = arr[high].lower()
+    part = low
     for j in range(low, high):
-        if ord(arr[j][0].lower()) < pivot:
-            arr[j], arr[part] = arr[part], arr[j]
+        if arr[j].lower() < pivot:
+            darrel = j
+            arr[j], arr[part] = arr[part], arr[darrel]
             part += 1
-        if ord(arr[j][0].lower()) == pivot:
-            char = 0
-            while ord(arr[j][char].lower()) == ord(arr[high][char].lower()):
-                char += 1
-            if ord(arr[j][char].lower()) < ord(arr[high][char].lower()):
-                arr[j], arr[part] = arr[part], arr[j]
-                part += 1
-    arr[part], arr[high] = arr[high], arr[part]
+
+        h = part
+        arr[part], arr[high] = arr[high], arr[h]
     return part
 
 def quicksort(low, high, arr):
@@ -35,5 +32,4 @@ def quicksort(low, high, arr):
         quicksort(pi + 1, high, arr)
     return arr
 
-for index in range(len(wordsList) - 1):
-    print(quicksort(0, len(wordsList) - 1, wordsList)[index])
+print(quicksort(0, (len(wordsList) - 1), wordsList))
