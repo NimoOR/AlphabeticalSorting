@@ -3,10 +3,11 @@
 import sys
 
 words = sys.stdin.read()
+
 wordsList = []
 
 wordsList = words.split("\n")
-'''print(words)'''
+
 print(wordsList)
 
 def partition(low, high, arr):
@@ -17,9 +18,9 @@ def partition(low, high, arr):
             part += 1
         if ord(arr[j][0].lower()) == pivot:
             char = 0
-            while ord(arr[j][char].lower()) == ord(arr[high][char]):
+            while ord(arr[j][char].lower()) == ord(arr[high][char].lower()):
                 char += 1
-            if ord(arr[j][char].lower()) < ord(arr[high][char]):
+            if ord(arr[j][char].lower()) < ord(arr[high][char].lower()):
                 arr[j], arr[part] = arr[part], arr[j]
                 part += 1
     arr[part], arr[high] = arr[high], arr[part]
