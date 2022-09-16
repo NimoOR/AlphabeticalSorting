@@ -19,10 +19,13 @@ def partition(low, high, arr):
         if ord(arr[j][0].lower()) == pivot:
             char = 0
             while ord(arr[j][char].lower()) == ord(arr[high][char].lower()):
-                char += 1
-            if ord(arr[j][char].lower()) < ord(arr[high][char].lower()):
-                arr[j], arr[part] = arr[part], arr[j]
-                part += 1
+                if (char + 1) < len(arr[j]) and (char + 1) < len(arr[high]):
+                    if ord(arr[j][char + 1].lower()) < ord(arr[high][char + 1].lower()):
+                        arr[j], arr[part] = arr[part], arr[j]
+                        part += 1
+                    char += 1
+                else:
+                    break
     arr[part], arr[high] = arr[high], arr[part]
     return part
 
@@ -37,3 +40,4 @@ def quicksort(low, high, arr):
 
 for index in range(len(wordsList) - 1):
     print(quicksort(0, len(wordsList) - 1, wordsList)[index])
+
