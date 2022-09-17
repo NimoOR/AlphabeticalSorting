@@ -1,35 +1,28 @@
 #!/usr/bin/env python3
 
 import sys
+sys.setrecursionlimit(1500)
 
 words = sys.stdin.read()
-wordsList = ["drew", "Raffi", "nick's", "Qasem", "Avi's", "avis", "qasem", "raffi"]
-#wordsList = words.split("\n")
-for i in range(len(wordsList)):
-    wordsList[i] = wordsList[i].lower()
-print(wordsList)
-#print(wordsList)
+wordsList = words.split("\n")
+wordsList.pop()
 
 def partition(low, high, arr):
-    pivot = arr[high].lower()
-    part = low
+    pivot, part = arr[high].lower(), low - 1
     for j in range(low, high):
         if arr[j].lower() < pivot:
-            darrel = j
-            arr[j], arr[part] = arr[part], arr[darrel]
             part += 1
-
-        h = part
-        arr[part], arr[high] = arr[high], arr[h]
-    return part
+            arr[j], arr[part] = arr[part], arr[j]
+    arr[part + 1], arr[high] = arr[high], arr[part + 1]
+    return part + 1
 
 def quicksort(low, high, arr):
-    if len(arr) == 1:
-        return arr
     if low < high:
-        pi = partition(low, high - 1, arr)
+        pi = partition(low, high, arr)
         quicksort(low, pi - 1, arr)
         quicksort(pi + 1, high, arr)
     return arr
+final = quicksort(0, len(wordsList) - 1, wordsList)
+for index in range(len(wordsList) - 1):
+    sys.stdout.write(final[index] + "\n")    
 
-print(quicksort(0, (len(wordsList) - 1), wordsList))
