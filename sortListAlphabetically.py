@@ -1,35 +1,31 @@
 #!/usr/bin/env python3
 
 import sys
+sys.setrecursionlimit(1500)
 
-wordsList = []
-
-words = open(r"test.txt","r")
-
-for line in words:
-    wordsList.append(line)
-
-wordsList = [x[:-1] for x in wordsList]
-
-print(wordsList) 
-
+words = sys.stdin.read()
+wordsList = words.split("\n")
+#print(wordsList)
+wordsList.pop()
 def partition(low, high, arr):
-    pivot, part = ord(arr[high][0]), low
+    pivot = arr[high].lower()
+    part = low - 1
     for j in range(low, high):
-        if ord(arr[j][0]) <= pivot:
-            arr[j], arr[part] = arr[part], arr[j]
+        if arr[j].lower() < pivot:
             part += 1
-    arr[part], arr[high] = arr[high], arr[part]
-    return part
+            arr[j], arr[part] = arr[part], arr[j]
+    arr[part + 1], arr[high] = arr[high], arr[part + 1]
+    return part + 1
 
-def quicksort(low, high, arr, index):
+def quicksort(low, high, arr):
     if len(arr) == 1:
-        return arr[index]
+        return arr
     if low < high:
         pi = partition(low, high, arr)
-        quicksort(low, pi - 1, arr, index)
-        quicksort(pi + 1, high, arr, index)
-    return arr[index]
+        quicksort(low, pi - 1, arr)
+        quicksort(pi + 1, high, arr)    
+    return arr
 
 for index in range(len(wordsList) - 1):
-    print(quicksort(0, len(wordsList) - 1, wordsList, index))
+    print(quicksort(0, len(wordsList) - 1, wordsList)[index])
+    
