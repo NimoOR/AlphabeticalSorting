@@ -17,6 +17,7 @@ def partition(low, high, arr):
     return part + 1
 
 def quicksort(low, high, arr):
+<<<<<<< HEAD
     if len(arr) == 1:
         return arr
     if low < high:
@@ -28,3 +29,15 @@ def quicksort(low, high, arr):
 final = quicksort(0, len(wordsList) - 1, wordsList)
 for index in range(len(wordsList) - 1):
     sys.stdout.write(final[index] + "\n")    
+=======
+    if low < high:
+        pi = partition(low, high, arr)
+        quicksort(low, pi - 1, arr)
+        quicksort(pi + 1, high, arr)
+    final = ""
+    for index in range(len(arr) - 1):
+        final = final + "\n" + arr[index]
+    return final
+
+print(quicksort(0, len(wordsList) - 1, wordsList))
+>>>>>>> 5eb1f0a8f8fde5d43bf4391a43d709ec3d419ef9
