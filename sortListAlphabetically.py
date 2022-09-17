@@ -25,7 +25,7 @@ def quicksort(low, high, arr):
         quicksort(low, pi - 1, arr)
         quicksort(pi + 1, high, arr)    
     return arr
-
+final = quicksort(0, len(wordsList) - 1, wordsList)
 for index in range(len(wordsList) - 1):
-    print(quicksort(0, len(wordsList) - 1, wordsList)[index])
+    print(final[index])
     
