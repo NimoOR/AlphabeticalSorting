@@ -27,4 +27,4 @@ def quicksort(low, high, arr):
 
 final = quicksort(0, len(wordsList) - 1, wordsList)
 for index in range(len(wordsList) - 1):
-    print(final[index])    
+    sys.stdout.write(final[index] + "\n")    
