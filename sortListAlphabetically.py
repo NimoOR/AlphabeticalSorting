@@ -21,8 +21,9 @@ def quicksort(low, high, arr):
         pi = partition(low, high, arr)
         quicksort(low, pi - 1, arr)
         quicksort(pi + 1, high, arr)
-    return arr
-    
-final = quicksort(0, len(wordsList) - 1, wordsList)
-for index in range(len(wordsList) - 1):
-    sys.stdout.write(final[index] + "\n")    
+    final = ""
+    for index in range(len(arr) - 1):
+        final = final + "\n" + arr[index]
+    return final
+
+print(quicksort(0, len(wordsList) - 1, wordsList))
