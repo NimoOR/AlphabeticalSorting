@@ -26,4 +26,4 @@ def quicksort(low, high, arr):
         final = final + "\n" + arr[index]
     return final
 
-print(quicksort(0, len(wordsList) - 1, wordsList))
+sortedWords = quicksort(0, len(wordsList) - 1, wordsList)
