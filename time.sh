@@ -11,7 +11,7 @@ do
     num=$((10**j))    
     for _ in {0..4}
     do
-	time cat $folder-10e$j.txt | python sortListAlphabetically.py  >> words.txt
+	time cat $folder-10e$j.txt | swift main.swift  >> words.txt
 	echo $now // $num"words"
     done
 done
